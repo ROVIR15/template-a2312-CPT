@@ -31,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-import client from './apollo-client';
-import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
+// import client from './apollo-client';
+// import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
 
 export async function getStaticProps(){
   // const { data } = await client.query({ query: GET_MANY_PRODUCT_FROM_SERVER });
