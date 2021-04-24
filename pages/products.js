@@ -35,11 +35,12 @@ import client from './apollo-client';
 import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
 
 export async function getStaticProps(){
-  const { data } = await client.query({ query: GET_MANY_PRODUCT_FROM_SERVER });
+  // const { data } = await client.query({ query: GET_MANY_PRODUCT_FROM_SERVER });
 
   return {
     props: {
-        products: data.productMany
+        products: []
+        // products: data.productMany
     }
   }
 }
@@ -78,19 +79,22 @@ export default function Products({ products }) {
             justify="center"
             alignItems="center"
           >
-            {products.map((product) => {
-                return (
-                  <Grid
-                    item
-                    container
-                    justify="center"
-                    xs={12}
-                    md={4}
-                  >
-                    <Card id={product._id} title={product.name} shortdes={product.short_description}/>
-                  </Grid>
-                )
-            })}
+            {products.length ? 
+              products.map((product) => {
+                  return (
+                    <Grid
+                      item
+                      container
+                      justify="center"
+                      xs={12}
+                      md={4}
+                    >
+                      <Card id={product._id} title={product.name} shortdes={product.short_description}/>
+                    </Grid>
+                  )
+              }) :
+              <div></div>
+            }
           </Grid>
         </Container>
       </Box>
