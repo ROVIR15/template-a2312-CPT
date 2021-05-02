@@ -22,7 +22,44 @@ const useStyles = makeStyles((theme) => ({
   boxWidth: {
     maxWidth: '60%',
     marginTop: '0.5em', 
-    marginBottom: '0.5em'
+    marginBottom: '0.5em',
+    [theme.breakpoints.down('md')]:{
+      maxWidth: '80%',
+      marginTop: '0.5em', 
+      marginBottom: '0.5em',
+    }
+  },
+  boxInsideParallax: {
+    width: "494px",
+    background: "#333333",
+    opacity: "0.9",
+    marginLeft: '3rem',
+    [theme.breakpoints.down('md')]:{
+      width: "300px",
+      margin: 'auto'
+    }
+  },
+  marginInsideBox: {
+    marginTop: '2em',
+    marginBottom: '1em',
+    marginLeft: '0.45rem',
+    marginRight: '0.45rem',
+    [theme.breakpoints.down('md')]:{
+      marginTop: '1.5em',
+      marginBottom: '1em',
+      marginLeft: '0.15rem',
+      marginRight: '0.15rem',
+    }
+  },
+  heading: {
+    [theme.breakpoints.down('md')]:{
+      fontSize: 24
+    }
+  },
+  subtitle: {
+    [theme.breakpoints.down('md')]:{
+      fontSize: 12
+    }
   }
 }))
 
@@ -76,27 +113,17 @@ function HeroSection2({pathname}) {
         height: '580px'
       }}
     >
-      <div style={{
-        width: "494px",
-        background: "#333333",
-        opacity: "0.9",
-        marginLeft: '3rem'
-      }}>
+      <div className={classes.boxInsideParallax}>
         <div style={{display: 'flex', flexDirection: 'column'}}>
-          <div style={{
-            marginTop: '2em',
-            marginBottom: '1em',
-            marginLeft: '0.45rem',
-            marginRight: '0.45rem'
-          }}>
+          <div className={classes.marginInsideBox}>
           <Typography
             variant="h3"
-            className={classes.proximaNovaText}
+            className={clsx([classes.proximaNovaText, classes.heading])}
           >
             {state ? state.headline : null}
           </Typography>
           <Typography
-            className={clsx([classes.karlaText, classes.boxWidth])}
+            className={clsx([classes.karlaText, classes.boxWidth, classes.subtitle])}
             variant="body2"
           >
             {state ? state.caption : null}
@@ -104,14 +131,14 @@ function HeroSection2({pathname}) {
           </div>
           <div style={{display: 'flex', flexDirection: 'row'}}>
             <div style={{
-              width: "247px",
+              width: "50%",
               height: "35px",
               background: "#005BAB",
               opacity: "0.8"
             }}>
             </div>
             <div style={{
-              width: "247px",
+              width: "50%",
               height: "35px",
               background: "#E5B122",
               opacity: "0.8"

@@ -15,7 +15,13 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: theme.typography.pxToRem(96),
         paddingBottom: theme.typography.pxToRem(96),
         paddingRight: theme.typography.pxToRem(128),
-        paddingLeft: theme.typography.pxToRem(128)
+        paddingLeft: theme.typography.pxToRem(128),
+        [theme.breakpoints.down('md')]: {
+          paddingTop: theme.typography.pxToRem(24),
+          paddingBottom: theme.typography.pxToRem(24),
+          paddingRight: theme.typography.pxToRem(28),
+          paddingLeft: theme.typography.pxToRem(28)
+        }
     },
     boxRoot: {
       backgroundColor: theme.palette.secondary.main,
@@ -35,7 +41,10 @@ const useStyles = makeStyles((theme) => ({
   
         textAlign: 'center',
         letterSpacing: '0.1em',
-        textShadow: '2px 2px 0px #FFFFFF'
+        textShadow: '2px 2px 0px #FFFFFF',
+        [theme.breakpoints.down('md')]: {
+          marginBottom: 12
+        }
     },
     heading: {
       fontStyle: 'normal',

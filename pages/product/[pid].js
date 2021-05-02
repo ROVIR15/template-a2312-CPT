@@ -35,12 +35,21 @@ const useStyles = makeStyles((theme) => ({
       margin: 'auto',
       borderRadius: 0,
       background: 'none',
-      boxShadow: 'none'
+      boxShadow: 'none',
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
+        maxHeight: 500
+      }
     },
     cover: {
       width: 277,
       height: 277,
-      marginRight: 16
+      marginRight: 16,
+      [theme.breakpoints.down('md')]: {
+        width: "100%",
+        marginLeft: 16,
+        marginRight: 16
+      }
     },
     card: {
       maxWidth: "30rem",
@@ -54,6 +63,12 @@ const useStyles = makeStyles((theme) => ({
     blueSection: {
       backgroundColor: theme.palette.primary.main,
       padding: '2rem 1em'
+    },
+    cardContent: {
+      [theme.breakpoints.down('md')]: {
+        paddingLeft: 0,
+        paddingRight: 0
+      }
     },
     yellowSection: {
       backgroundColor: theme.palette.secondary.main
@@ -87,7 +102,11 @@ const useStyles = makeStyles((theme) => ({
       margin: 'auto',
       minWidth: 600,
       maxWidth: 787,
-      marginTop: 36
+      marginTop: 36,
+      [theme.breakpoints.down('md')]: {
+        marginTop: 16,
+        width: 200
+      }
     },
     tab: {
       color: 'white',
@@ -108,18 +127,36 @@ const useStyles = makeStyles((theme) => ({
       width: 145,
       padding: '8px 32px',
       border: '1px solid #E5B122',
-      marginRight: '20px'
+      marginRight: '20px',
+      [theme.breakpoints.down('md')]: {
+        maxHeight: 32,
+        width: 100,
+        padding: '4px 8px'
+      }
     },
     labelText: {
       fontSize: '16px', 
       margin: 0, 
-      color: 'white'
+      color: 'white',
+      [theme.breakpoints.down('md')]: {
+        fontSize: 14
+      }
     },
     labelContent: {
       maxHeight: 40,
-      minWidth: 454,
       padding: '8px 32px',
-      border: '1px solid #E5B122'
+      border: '1px solid #E5B122',
+      [theme.breakpoints.down('md')]: {
+        maxHeight: 32,
+        minWidth: 200,
+        paddingTop: 4,
+        paddingBottom: 4,
+        paddingRight: 24,
+        paddingLeft: 8
+      },
+      [theme.breakpoints.up('lg')]: {
+        minWidth: 454 
+      }
     },
     heading2: {
       color: '#005BAB',
@@ -131,7 +168,21 @@ const useStyles = makeStyles((theme) => ({
       /* identical to box height */
 
       textAlign: 'center',
-      letterSpacing: '0.1em'
+      letterSpacing: '0.1em',
+      [theme.breakpoints.down('md')]: {
+        fontSize: '28px',
+        lineHeight: '36px'
+      }
+    },
+    boxInsideAnotherProducts: {
+      marginLeft: "8em",
+      marginRight: '8em',
+      marginTop: '2em',
+      marginBottom: '2em',
+      [theme.breakpoints.down('md')]: {
+        marginLeft: 32,
+        marginRight: 32
+      }
     }
 }));
 
@@ -323,9 +374,9 @@ function ProductDetails({ product, anotherProducts }) {
             <CardMedia
               className={classes.cover}
               image=
-                "https://images.unsplash.com/photo-1524638067-feba7e8ed70f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+                "https://images.unsplash.com/photo-1524638067-feba7e8ed70f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1"
             />
-            <CardContent>
+            <CardContent className={classes.cardContent}>
               <div
                 style={{width: 'fit-content'}}
               >
@@ -348,7 +399,6 @@ function ProductDetails({ product, anotherProducts }) {
             indicatorColor="primary"
             textColor="primary"
             onChange={handleChange}
-            aria-label="disabled tabs example"
           >
             <Tab
               className={classes.tab}
@@ -379,9 +429,7 @@ function ProductDetails({ product, anotherProducts }) {
         <ProductSmokingHero />
       </Box>
       <Box
-        style={{
-          margin: '2rem 8rem'
-        }}
+        className={classes.boxInsideAnotherProducts}
       >
         <Typography 
           className={classes.heading2}

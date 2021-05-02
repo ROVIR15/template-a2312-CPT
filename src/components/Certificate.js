@@ -5,6 +5,7 @@ import {
   Typography,
   makeStyles
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   boxCertificateStyle: {
@@ -15,11 +16,54 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#FBF7F7',
     filter: "drop-shadow(20px 20px 0px #005BAB);"
   },
+  imageCertificateStyle: {
+    margin: '0 1em',
+    [theme.breakpoints.down('md')]: {
+      width: 24
+    }
+  },
+  certificateTitle: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14
+    }
+  },
+  certificateSubtitle: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 8
+    }
+  },
+  certificateWrap: {
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    marginLeft: '3em',
+    [theme.breakpoints.down('md')]: {
+      marginTop: 24,
+      marginBottom: 24,
+      marginLeft: 18
+    }
+  },
+  boxCertificateStyle: {
+    width: "900px",
+    height: "426px",
+    margin: "auto",
+    display: "flex",
+    filter: "drop-shadow(20px 20px 0px #005BAB);",
+    [theme.breakpoints.down('md')]: {
+      width: 320,
+      height: 200
+    }
+  },
   paddingInnerBox: {
     paddingTop: '125px',
     paddingBottom: '126px',
     paddingRight: '127px',
-    paddingLeft: '124px'
+    paddingLeft: '124px',
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 33,
+      paddingBottom: 34,
+      paddingRight: 12,
+      paddingLeft: 12      
+    }
   },
   marginAroundImage: {
     margin: '0 1em'
@@ -56,17 +100,17 @@ function CertificateShow(){
       <Box className={classes.paddingInnerBox}>
         <Paper
          square
-         className={classes.boxCertificateStyle}>
-          <div style={{marginTop: 'auto', marginBottom: 'auto', marginLeft: '3em'}}>
+         className={clsx([classes.boxCertificateStyle])}>
+          <div className={classes.certificateWrap}>
             <Typography
-              className={classes.proximaNovaText}
+              className={clsx([classes.proximaNovaText, classes.certificateTitle])}
               variant="h4"
             >
               WE’RE CERTIFIED TO<br/> DELIVER BEST QUALITY<br/> CANNED FOODS
             </Typography>
             <div className={classes.spaceBetween}>
             <Typography
-              className={classes.karlaText}
+              className={clsx([classes.karlaText, classes.certificateSubtitle])}
               variant="body2"
             >
               Our products has successfully met the requirements of a national or<br/> internationally recognized best practice approach.
@@ -74,7 +118,7 @@ function CertificateShow(){
             </div>
             {listCertificate.map(function(item){
               return (
-                <img className={classes.marginAroundImage} src={item} alt="sampleCertificate" />
+                <img className={classes.imageCertificateStyle} src={item} alt="sampleCertificate" />
               )
             })}
           </div>

@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
   inquiryText: {
     color: '#FFFFFF',
     textShadow: '2px 2px 0px #E5B122',
-    margin: '36px 0'
+    margin: '36px 0',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 28
+    }
   },
   playButton: {
     borderRadius: 0,

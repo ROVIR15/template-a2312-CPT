@@ -1,15 +1,16 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Link from '@material-ui/core/Link';
 import Container from '@material-ui/core/Container';
 import Typography from '../../modules/Typography';
-import TextField from '../../modules/TextField';
+import Hidden from '@material-ui/core/Hidden';
 
 function Copyright() {
   return (
     <React.Fragment>
-      <p style={{margin: 'unset'}}>
+      <p style={{margin: 'unset', textAlign: 'center'}}>
         Jalan Raya Dukuh Tulis, RT 03 RW 08,
         Desa Besito, Kec. Gebog, Kab. Kudus,
         Central Java, Indonesia
@@ -22,15 +23,25 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
+    color: 'white'
   },
   container: {
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(8),
     display: 'flex',
-    color: 'white'
+    color: 'white',
+    [theme.breakpoints.down('md')]: {
+      marginLeft: 256,
+      marginRight: 256
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: 81,
+      marginRight: 81
+    }
   },
   iconsWrapper: {
     height: 120,
+    margin: 'auto'
   },
   icons: {
     display: 'flex',
@@ -46,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: theme.palette.warning.dark,
     },
+    [theme.breakpoints.down('md')]: {
+      width: 36,
+      height: 36
+    }
   },
   list: {
     margin: 0,
@@ -83,7 +98,24 @@ export default function AppFooter() {
   const classes = useStyles();
 
   return (
-    <Typography component="footer" className={classes.root}>
+    <Box component="footer" className={classes.root}>
+      <Hidden lgUp>
+      <Container className={classes.container}>
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={4}
+        >
+          <img className={classes.iconsWrapper} src="/mbi-logo-fullwhite.png"/>
+          <Grid item xs={12}>
+            <Copyright />
+          </Grid>
+        </Grid>
+      </Container>
+      </Hidden>
+      <Hidden mdDown>
       <Container className={classes.container}>
         <Grid container spacing={5}>
           <div style={{flexGrow: '0.3'}}></div>
@@ -151,9 +183,7 @@ export default function AppFooter() {
           </Grid>
         </Grid>
       </Container>
-        <Typography variant="caption">
-          {'This developed by Eko'}
-        </Typography>
-    </Typography>
+      </Hidden>
+    </Box>
   );
 }

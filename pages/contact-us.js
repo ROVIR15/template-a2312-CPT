@@ -24,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.typography.pxToRem(48),
     paddingTop: theme.typography.pxToRem(48),
     paddingRight: theme.typography.pxToRem(128),
-    paddingLeft: theme.typography.pxToRem(128)
+    paddingLeft: theme.typography.pxToRem(128),
+    [theme.breakpoints.down('md')]: {
+      paddingBottom: theme.typography.pxToRem(18),
+      paddingTop: theme.typography.pxToRem(18),
+      paddingRight: theme.typography.pxToRem(36),
+      paddingLeft: theme.typography.pxToRem(36),
+    }
   },
   heading: {
     fontStyle: 'normal',
@@ -33,13 +39,22 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '58px',
     color: '#E5B122',
     textShadow: '2px 2px 0px #FFFFFF',
-    paddingBottom: theme.typography.pxToRem(48)
+    paddingBottom: theme.typography.pxToRem(48),
+    marginTop: '0.4em',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '48px',
+      lineHeight: '58px'
+    }
   },
   body: {
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '24px',
     lineHeight: '28px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '16px',
+      lineHeight: '22px'
+    }
   },
   captionStyle: {
     color: '#fff'
@@ -52,7 +67,11 @@ const useStyles = makeStyles((theme) => ({
     width: '441px',
     height: '441px',
     background: 'url(7.jpg)',
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      width: 320,
+      height: 320
+    }
   },
   sectionYellow: {
     backgroundColor: theme.palette.secondary.main
@@ -79,7 +98,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     letterSpacing: '0.1em',
     color: '#005BAB',
-    textShadow: '6px 6px 0px rgba(255, 255, 255, 0.89)'
+    textShadow: '6px 6px 0px rgba(255, 255, 255, 0.89)',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '36px',
+      lineHeight: '48px'
+    }
   },
   formStyle: {
     background: '#FFFFFF',
@@ -89,7 +112,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.typography.pxToRem(8)
   },
   gridSpacing: {
-    paddingTop: theme.typography.pxToRem(64)
+    paddingTop: theme.typography.pxToRem(64),
+    [theme.breakpoints.down('md')]: {
+      paddingTop: theme.typography.pxToRem(24),
+      paddingBottom: theme.typography.pxToRem(24)
+    }
   },
   buttonStyle: {
     background: '#005BAB',

@@ -25,7 +25,15 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         letterSpacing: '0.1em'
     },
-
+    boxMargin: {
+      margin: '2rem 8rem',
+      [theme.breakpoints.down('md')]: {
+        marginLeft: 18,
+        marginRight: 18,
+        marginTop: 24,
+        marginBottom: 24
+      }
+    }
 }));
 
 function Newsroom() {
@@ -36,9 +44,7 @@ function Newsroom() {
     <Layout>
       <Hero pathname={pathname}/>
       <Box
-        style={{
-          margin: '2rem 8rem'
-        }}
+        className={classes.boxMargin}
       >
         <Typography 
           className={classes.heading2}

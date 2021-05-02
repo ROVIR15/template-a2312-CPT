@@ -57,7 +57,13 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.typography.pxToRem(80),
     paddingRight: theme.typography.pxToRem(80),
     paddingTop: theme.typography.pxToRem(35),
-    paddingBottom: theme.typography.pxToRem(35)
+    paddingBottom: theme.typography.pxToRem(35),
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: theme.typography.pxToRem(10),
+      paddingRight: theme.typography.pxToRem(10),
+      paddingTop: theme.typography.pxToRem(4),
+      paddingBottom: theme.typography.pxToRem(4),      
+    }
   },
   productionBox: {
     backgroundColor: "white",
@@ -74,13 +80,59 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: theme.palette.primary.main,
       color: "white"
+    },
+    [theme.breakpoints.down('md')]: {
+      width: theme.typography.pxToRem(125),
+      height: theme.typography.pxToRem(125)
     }
   },
   innerProductionBox: {
     textAlign: "center",
     margin: "auto"
-  }
+  },
+  number: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 18
+    }
+  },
+  heading: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 12
+    }
+  },
+  subtitle: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 8,
+      lineHeight: '0.2'
+    }
+  },
 }))
+
+const processItems = [{
+  number: 1,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}, {
+  number: 2,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}, {
+  number: 3,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}, {
+  number: 4,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}, {
+  number: 5,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}, {
+  number: 6,
+  heading: "Step Name Process",
+  subtitle: "short description about the step"
+}]
 
 function getStepContent(step) {
   switch (step) {
@@ -163,102 +215,26 @@ function Factory() {
         justify="center"
         alignContent="space-between"
       >
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(1)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">1</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(2)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">2</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(3)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">3</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(4)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">4</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(5)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">5</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={4}
-        >
-          <ButtonBase 
-            className={classes.productionBox}
-            onClick={() => handleClick(6)}
-          >
-            <div className={classes.innerProductionBox}>
-              <Typography variant="h4">6</Typography>
-              <Typography variant="h4">Step Name Process</Typography>
-              <Typography variant="caption">short description about the step</Typography>
-            </div>
-          </ButtonBase>
-        </Grid>
+        {
+          processItems.map((process, index) => (
+            <Grid
+              item
+              xs={6}
+              md={4}
+            >
+              <ButtonBase 
+                className={classes.productionBox}
+                onClick={() => handleClick(process.number)}
+              >
+                <div className={classes.innerProductionBox}>
+                  <Typography className={classes.number} variant="h4">{process.number}</Typography>
+                  <Typography className={classes.heading} variant="h4">{process.heading}</Typography>
+                  <Typography className={classes.subtitle} variant="caption">{process.subtitle}</Typography>
+                </div>
+              </ButtonBase>
+            </Grid>
+          ))
+        }
       </Grid>
       </div>
       <ProductSmoking2 style={{marginBottom: '4rem'}}/>

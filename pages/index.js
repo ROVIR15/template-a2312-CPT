@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
-    padding: '4em 6em'
+    padding: '4em 6em',
+    [theme.breakpoints.down('md')]: {
+      padding: '2em 4em'
+    }
   },
   yellowSection: {
     backgroundColor: theme.palette.secondary.main
@@ -44,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '60px',
     color: theme.palette.secondary.main,
     border: '2px solid #005BAB',
-    textShadow: '2px 2px 0px #FFFFFF'
+    textShadow: '2px 2px 0px #FFFFFF',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 32,
+      lineHeight: '36px'
+    }
   },
   textSecondary: {
     fontFamily: "Karla",
@@ -53,23 +60,59 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "24px",
     lineHeight: "28px",
     color: "#FFFFFF",
-    margin: '1.25em 0'
+    margin: '1.25em 0',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14,
+    }
   },
-  marginAroundImage: {
-    margin: '0 1em'
+  imageCertificateStyle: {
+    margin: '0 1em',
+    [theme.breakpoints.down('md')]: {
+      width: 24
+    }
+  },
+  certificateTitle: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14
+    }
+  },
+  certificateSubtitle: {
+    [theme.breakpoints.down('md')]: {
+      fontSize: 8
+    }
+  },
+  certificateWrap: {
+    marginTop: 'auto',
+    marginBottom: 'auto',
+    marginLeft: '3em',
+    [theme.breakpoints.down('md')]: {
+      marginTop: 24,
+      marginBottom: 24,
+      marginLeft: 18
+    }
   },
   boxCertificateStyle: {
     width: "900px",
     height: "426px",
     margin: "auto",
     display: "flex",
-    filter: "drop-shadow(20px 20px 0px #005BAB);"
+    filter: "drop-shadow(20px 20px 0px #005BAB);",
+    [theme.breakpoints.down('md')]: {
+      width: 320,
+      height: 200
+    }
   },
   paddingInnerBox: {
     paddingTop: '125px',
     paddingBottom: '126px',
     paddingRight: '127px',
-    paddingLeft: '124px'
+    paddingLeft: '124px',
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 33,
+      paddingBottom: 34,
+      paddingRight: 12,
+      paddingLeft: 12      
+    }
   },
   spaceBetween: {
     marginTop: '1.25em',
@@ -80,7 +123,25 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "300",
     fontSize: "36px",
     lineHeight: "36px",
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down('md')]: {
+      fontSize: "16px"
+    }
+  },
+  quoteIcon: {
+    [theme.breakpoints.down('md')]: {
+      width: 20
+    }
+  },
+  quotesGrid: {
+    [theme.breakpoints.down('md')]: {
+      padding: 4
+    }
+  },
+  featuredProductImage: {
+    [theme.breakpoints.down('md')]: {
+      width: 128,
+    }
   }
 }));
 
@@ -128,7 +189,7 @@ export default function Home() {
                 xs={6}
                 md={4}
               >
-                <img src={x} alt="sampleImage" />
+                <img className={classes.featuredProductImage} src={x} alt="sampleImage" />
               </Grid>
             )
           })}
@@ -138,16 +199,16 @@ export default function Home() {
         <Paper
          square
          className={clsx([classes.boxCertificateStyle])}>
-          <div style={{marginTop: 'auto', marginBottom: 'auto', marginLeft: '3em'}}>
+          <div className={classes.certificateWrap}>
             <Typography
-              className={classes.proximaNovaText}
+              className={clsx([classes.proximaNovaText, classes.certificateTitle])}
               variant="h4"
             >
               WE’RE CERTIFIED TO<br/> DELIVER BEST QUALITY<br/> CANNED FOODS
             </Typography>
             <div className={classes.spaceBetween}>
             <Typography
-              className={classes.karlaText}
+              className={clsx([classes.karlaText, classes.certificateSubtitle])}
               variant="body2"
             >
               Our products has successfully met the requirements of a national or<br/> internationally recognized best practice approach.
@@ -155,7 +216,7 @@ export default function Home() {
             </div>
             {listCertificate.map(function(item){
               return (
-                <img className={classes.marginAroundImage} src={item} alt="sampleCertificate" />
+                <img className={classes.imageCertificateStyle} src={item} alt="sampleCertificate" />
               )
             })}
           </div>
@@ -171,23 +232,26 @@ export default function Home() {
         >
           <Grid
             item
+            className={classes.quotesGrid}
           >
-            <img src="/quoteIcon.png" alt="quoteIcon" />
+            <img className={classes.quoteIcon} src="/quoteIcon.png" alt="quoteIcon" />
           </Grid>
           <Grid
             item
-            style={{maxWidth: '80%'}}
+            style={{maxWidth: '80%', padding: 'unset'}}
           >
             <Typography 
               className={clsx([classes.proximaNovaText, classes.quoteTextStyle])}
-              variant="h4">
+              variant="h4"
+            >
               WE’RE ASPIRE TO BRING OUR PRODUCTS WORLDWIDE SO MANY PEOPLE CAN STARTS TO SAVOR GOOD QUALITY CANNED SEAFOOD.
             </Typography>
           </Grid>
           <Grid
             item
+            className={classes.quotesGrid}
           >
-            <img src="/quoteIcon.png" alt="quoteIcon" style={{transform: "rotate(-180deg)"}}/>
+            <img className={classes.quoteIcon} src="/quoteIcon.png" alt="quoteIcon" style={{transform: "rotate(-180deg)"}}/>
           </Grid>
         </Grid>
       </Box>

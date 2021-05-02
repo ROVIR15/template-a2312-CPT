@@ -20,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center'
   },
   image: {
-    margin: '2em 0'
+    margin: '2em 0',
+    [theme.breakpoints.down('md')]: {
+      width: 200
+    }
   },
   productList: {
     padding: '1em 5rem'
@@ -31,21 +34,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-// import client from './apollo-client';
-// import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
+import client from './apollo-client';
+import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
 
 export async function getStaticProps(){
-  // const { data } = await client.query({ query: GET_MANY_PRODUCT_FROM_SERVER });
-
-  return {
-    props: {
-        products: []
-        // products: data.productMany
+  try {
+    const { data } = await client.query({ query: GET_MANY_PRODUCT_FROM_SERVER });
+    return {
+      props: {
+        products: data.productMany
+      }
+    }
+  } catch (error) {
+    return {
+      props: {
+        error: true
+      }
     }
   }
 }
 
-export default function Products({ products }) {
+export default function Products({ products, error }) {
   const classes = useStyles();
   const route = useRouter();
 
@@ -79,7 +88,7 @@ export default function Products({ products }) {
             justify="center"
             alignItems="center"
           >
-            {products.length ? 
+            {error ? alert("Connection Error") : 
               products.map((product) => {
                   return (
                     <Grid
@@ -92,8 +101,7 @@ export default function Products({ products }) {
                       <Card id={product._id} title={product.name} shortdes={product.short_description}/>
                     </Grid>
                   )
-              }) :
-              <div></div>
+              })
             }
           </Grid>
         </Container>

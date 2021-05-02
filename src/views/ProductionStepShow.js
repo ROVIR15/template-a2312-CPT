@@ -11,7 +11,11 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: theme.typography.pxToRem(48),
     paddingTop: theme.typography.pxToRem(24),
     paddingBottom: theme.typography.pxToRem(24),
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      paddingTop: theme.typography.pxToRem(8),
+      paddingBottom: theme.typography.pxToRem(8),
+      margin: 'auto',    }
   },
   heading: {
     fontStyle: 'normal',
@@ -20,14 +24,26 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '58px',
     color: '#E5B122',
     textShadow: '2px 2px 0px #FFFFFF',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 24
+    }
   },
   body: {
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: '24px',
     lineHeight: '28px',
-    color: '#FFFFFF'
-  }    
+    color: '#FFFFFF',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 18,
+      lineHeight: '20px',
+    }
+  },
+  imageShow: {
+    [theme.breakpoints.down('md')]: {
+      width: '100%'
+    }
+  }
 }))
 
 function ProductionStepShow({content}) {

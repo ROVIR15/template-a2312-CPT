@@ -33,7 +33,11 @@ const styles = (theme) => ({
     lineHeight: '58px',
     textAlign: 'center',
     color: '#FFFFFF',
-    textShadow: '4px 4px 0px #005BAB'
+    textShadow: '4px 4px 0px #005BAB',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '32px',
+      lineHeight: '48px'
+    }
   }
 });
 

@@ -4,7 +4,7 @@
 // }
 
 import client from '../apollo-client';
-import { GET_MANY_PRODUCT_FROM_SERVER } from '../graphql/query';
+import { GET_MANY_PRODUCT_FROM_SERVER } from '../graphql';
 
 export async function getManyProducts(){
   const { data } = await client.query(GET_MANY_PRODUCT_FROM_SERVER);

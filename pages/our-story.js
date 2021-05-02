@@ -12,7 +12,10 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
       alignItems: 'center',
       padding: '1em 0rem',
-      margin: '3rem 0'
+      margin: '3rem 0',
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column'
+      }
     },
     image: {
       marginRight: '2em',
@@ -22,7 +25,16 @@ const useStyles = makeStyles((theme) => ({
     description: {
       marginLeft: '2em',
       padding: '0 2em', 
-      width: '452px'
+      width: '452px',
+      [theme.breakpoints.down('md')]: {
+        marginTop: 42,
+        marginBottom: 42,
+        marginLeft: 24,
+        marginRight: 24,
+        paddingLeft: 32,
+        paddingRight: 32,
+        fontSize: 18
+      }
     }
 }))
 
