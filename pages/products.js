@@ -1,11 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-
-import clsx from 'clsx';
 import Layout from '../src/layouts';
 import Hero from '../src/components/HeroSection2';
 import Card from '../src/views/SingleCard';
-import { Box, Button, Container, Grid, makeStyles, Typography } from '@material-ui/core';
+import { Box, Container, Grid, makeStyles, Typography } from '@material-ui/core';
 import CertificateShow from '../src/components/Certificate';
 import ProductSmoking2 from '../src/components/ProductSmoking2';
 
@@ -34,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-import client from './apollo-client';
-import { GET_MANY_PRODUCT_FROM_SERVER } from './graphql/query';
+import client from '../helpers/apollo-client';
+import { GET_MANY_PRODUCT_FROM_SERVER } from '../helpers/graphql/query';
 
 export async function getStaticProps(){
   try {
@@ -57,6 +55,10 @@ export async function getStaticProps(){
 export default function Products({ products, error }) {
   const classes = useStyles();
   const route = useRouter();
+
+  React.useEffect(() => {
+    if (error) alert("Connection Refused");
+  }, [error])
 
   return (
     <Layout>
@@ -88,7 +90,7 @@ export default function Products({ products, error }) {
             justify="center"
             alignItems="center"
           >
-            {error ? alert("Connection Error") : 
+            {error ? null : 
               products.map((product) => {
                   return (
                     <Grid

@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../src/layouts';
 import Hero from '../src/components/HeroSection2';
-import ProductCTA from '../src/components/ProductCTA';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';

@@ -21,9 +21,10 @@ import ProductCard from '../../src/views/SingleCard';
 import ProductSmokingHero from '../../src/components/ProductSmokingHero';
 
 //Graphql API & query
-import client from '../apollo-client';
-import { GET_ONE_PRODUCT_BY_ID, GET_MANY_PRODUCT_FROM_SERVER } from '../graphql/query';
+import client from '../../helpers/apollo-client';
+import { GET_ONE_PRODUCT_BY_ID, GET_MANY_PRODUCT_FROM_SERVER } from '../../helpers/graphql/query';
 import Head from 'next/head';
+import Products from '../products';
 
 //Component Styling
 const useStyles = makeStyles((theme) => ({
@@ -190,6 +191,27 @@ const useStyles = makeStyles((theme) => ({
 
 //Static Paths 
 export async function getStaticPaths() {
+  try {
+    const { data: {productMany} } = await client.query({
+      query: GET_MANY_PRODUCT_FROM_SERVER
+    });
+
+    const paths = productMany.map((product) => ({
+      params: { pid: product._id},
+    }))
+
+    return {
+      paths,
+      fallback: true
+    }
+  } catch (error){
+    return {
+      paths: [],
+      fallback: false
+    }
+  }
+
+
   const anotherProducts = await client.query({
     query: GET_MANY_PRODUCT_FROM_SERVER
   })
