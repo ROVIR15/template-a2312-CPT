@@ -11,8 +11,9 @@ import YellowButton from '../../modules/YellowButton';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 307,
-    maxHeight: 375,
+    maxWidth: 300,
+    minWidth: 300,
+    minHeight: 375,
     margin: '1em 0',
     borderRadius: 0,
     border: "1px solid #BDBDBD",
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function MediaCard({id, title, shortdes}) {
+function MediaCard({id, title, shortdes, image}) {
   const classes = useStyles();
 
   return (
@@ -53,7 +54,7 @@ function MediaCard({id, title, shortdes}) {
     >
       <CardMedia
         className={classes.media}
-        image="https://kvat-webassets.aisleahead.com/getMainImageSquare.php?upc=0020633100000&size=900&order=1"
+        image={image}
         title="Contemplative Reptile"
       />
       <CardContent
@@ -62,7 +63,14 @@ function MediaCard({id, title, shortdes}) {
         <Typography gutterBottom variant="h6" component="h2">
           {title}
         </Typography>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="p"
+          style={{
+            minHeight: 65
+          }}
+        >
           {shortdes}
         </Typography>
       </CardContent>

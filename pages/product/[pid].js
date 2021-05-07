@@ -6,13 +6,11 @@ import DefaultErrorPage from 'next/error'
 
 // Material UI Components Library
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { Divider, makeStyles, Typography } from '@material-ui/core';
@@ -23,8 +21,6 @@ import ProductSmokingHero from '../../src/components/ProductSmokingHero';
 //Graphql API & query
 import client from '../../helpers/apollo-client';
 import { GET_ONE_PRODUCT_BY_ID, GET_MANY_PRODUCT_FROM_SERVER } from '../../helpers/graphql/query';
-import Head from 'next/head';
-import Products from '../products';
 
 //Component Styling
 const useStyles = makeStyles((theme) => ({
@@ -117,7 +113,11 @@ const useStyles = makeStyles((theme) => ({
       border: '1px solid #E5B122',
       boxSizing: 'border-box',
       padding: 24,
-      width: 'fit-content'      
+      width: 'fit-content',
+      minWidth: 767,
+      [theme.breakpoints.down('md')]: {
+        minWidth: 180
+      }
     },
     labels: {
       display: 'flex',
@@ -209,20 +209,6 @@ export async function getStaticPaths() {
       paths: [],
       fallback: false
     }
-  }
-
-
-  const anotherProducts = await client.query({
-    query: GET_MANY_PRODUCT_FROM_SERVER
-  })
-
-  const paths = anotherProducts.data.productMany.map((product) => ({
-    params: { pid: product._id},
-  }))
-
-  return {
-    paths,
-    fallback: true,
   }
 }
 
@@ -396,7 +382,7 @@ function ProductDetails({ product, anotherProducts }) {
             <CardMedia
               className={classes.cover}
               image=
-                "https://images.unsplash.com/photo-1524638067-feba7e8ed70f?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1"
+                {product.image_url}
             />
             <CardContent className={classes.cardContent}>
               <div
@@ -474,7 +460,12 @@ function ProductDetails({ product, anotherProducts }) {
                     xs={12}
                     md={4}
                   >
-                    <ProductCard />
+                    <ProductCard
+                      id={product._id}
+                      title={product.name}
+                      shortdes={product.short_description}
+                      image={product.image_url}
+                    />
                   </Grid>
                 )
             })}

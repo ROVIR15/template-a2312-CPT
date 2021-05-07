@@ -46,13 +46,14 @@ export async function getStaticProps(){
   } catch (error) {
     return {
       props: {
-        error: true
+        error: true,
+        message: error
       }
     }
   }
 }
 
-export default function Products({ products, error }) {
+export default function Products({ products, error, message }) {
   const classes = useStyles();
   const route = useRouter();
 
@@ -100,7 +101,12 @@ export default function Products({ products, error }) {
                       xs={12}
                       md={4}
                     >
-                      <Card id={product._id} title={product.name} shortdes={product.short_description}/>
+                      <Card
+                        id={product._id}
+                        title={product.name}
+                        shortdes={product.short_description}
+                        image={product.image_url}
+                      />
                     </Grid>
                   )
               })

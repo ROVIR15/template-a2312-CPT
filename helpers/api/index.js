@@ -17,7 +17,8 @@ export async function getManyProducts(){
   } catch (error) {
     return {
       props: {
-        error: true
+        error: true,
+        message: error
       }
     }
   }

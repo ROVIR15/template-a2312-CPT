@@ -31,3 +31,32 @@ export const GET_MANY_PRODUCT_FROM_SERVER = gql(`
         }
     }
 `);
+
+export const GET_MANY_NEWS = gql(`
+    query {
+        articleMany {
+            title,
+            meta_description
+        }
+    }
+`)
+
+export const GET_ONE_NEWS_BY_ID = gql(`
+    query artilceOne($_id: MongoID!){
+        artilceOne(filter : { _id: $_id }) {
+            title,
+            meta_description,
+            tags,
+            content,
+            image
+        }
+    }
+`);
+
+export const GET_MANY_NEWS_ID = gql(`
+    query {
+        artilceMany {
+            _id
+        }
+    }
+`)
